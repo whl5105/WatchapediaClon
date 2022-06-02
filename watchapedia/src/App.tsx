@@ -10,7 +10,6 @@ function App() {
     <Router>
       <Routes>
         <Route  path="/" element={<MainPage/>}/>
-
         <Route  path="/tv/*" >
           <Route  path="" element={<TvPage/>}/>
           <Route  path=":id" element={<TvDetail/>}/>
