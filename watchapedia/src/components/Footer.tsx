@@ -4,7 +4,6 @@ const Base = styled.footer`
   display: block;
   box-sizing: border-box;
   width: 100%;
-  margin-top: 200px;
 `
 
 const Section = styled.section`
