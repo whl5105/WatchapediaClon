@@ -28,7 +28,14 @@ const ImageWrapper = styled.div`
   height: 350px;
 `;
 
+
 const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+`;
+const PosterNull = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -79,7 +86,7 @@ return(
       <ImageWrapper>
     {
       posterPath === `${process.env.REACT_APP_IMAGE_PREFIX}null` ? (
-        <p>포스터를 불러오지 못함 </p>
+        <PosterNull src="https://via.placeholder.com/1200x350" /> 
       ):(
         <Image src={posterPath} alt={`${title} 의 포스터 ${posterPath}`} />
       )

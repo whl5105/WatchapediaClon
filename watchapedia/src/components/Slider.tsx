@@ -9,10 +9,10 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 
-interface Props {
+interface Props{
   children?:
     | React.ReactChild
-    | React.ReactChild[];//   
+    | React.ReactChild[];  
   settings?: Settings;
 }
 const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
