@@ -1,8 +1,11 @@
+import React from 'react';
 import styled from '@emotion/styled';
-import Card from '../../../components/Card';
+
 import useLatestMovie from './useLatestMovie';
+import Card from '../../../components/Card';
 
 const Base = styled.div`
+  margin-top:62px;  
   margin-bottom: 42px;
 `;
 
@@ -13,34 +16,35 @@ const Title = styled.h4`
   padding: 12px 0 14px;
 `;
 
-
-
 const LatestMovieSection: React.FC = () => {
-  const {data, isLoading } = useLatestMovie();
+  const { data: latestMovieResponse, isLoading } = useLatestMovie();
 
-  const getYear = (date:string) => date.split('-')[0];
+  const getYear = (release_date: string) => release_date.split('-')[0] || '';
+
+console.log(latestMovieResponse?.data)
+// console.log(latestMovieResponse?.data.poster_path)
+
   return (
     <Base>
       <Title>최근 개봉작</Title>
       {
-        isLoading || !data ? (
-          <div>Loading</div>
-        ):(
-          // <div>
-          //   {data?.data.title}
-          // </div>
-          <Card 
-            linkUrl={`/movie/${data.data.id}`}
-            title = {data.data.title} 
-            posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}`} // 이미지 url 
-            voteAverage ={data.data.vote_average} //평점
-            year={getYear(data.data.release_date)}
-          />
+        isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          latestMovieResponse?.data && (
+            <Card
+              key={latestMovieResponse.data.id}
+              linkUrl={`/movie/${latestMovieResponse.data.id}`}
+              title={latestMovieResponse.data.title}
+              posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}${latestMovieResponse.data.poster_path}`}
+              voteAverage={latestMovieResponse.data.vote_average}
+              year={getYear(latestMovieResponse.data.release_date)}
+            />
+          )
         )
       }
     </Base>
   )
 }
-
 
 export default LatestMovieSection;

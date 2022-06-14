@@ -25,7 +25,7 @@ const Base = styled.div`
 
 const ImageWrapper = styled.div`
   width: 100%;
-  height: 300px;
+  height: 350px;
 `;
 
 const Image = styled.img`
@@ -69,11 +69,23 @@ const Average = styled.div`
   align-items: center;
 `;
 
-const Card: React.FC<Props> = ({ linkUrl, title, posterPath, voteAverage, year }) => (
+
+const Card: React.FC<Props> = ({ linkUrl, title, posterPath, voteAverage, year }) => {
+console.log(posterPath);
+console.log(linkUrl);
+return(
   <StyledLink to={linkUrl}>
     <Base>
       <ImageWrapper>
-        <Image src={posterPath} alt={`${title} 의 포스터`} />
+    {
+      posterPath === `${process.env.REACT_APP_IMAGE_PREFIX}null` ? (
+        <p>포스터를 불러오지 못함 </p>
+      ):(
+        <Image src={posterPath} alt={`${title} 의 포스터 ${posterPath}`} />
+      )
+    }
+        
+        
       </ImageWrapper>
       <Info>
         <Title>{title}</Title>
@@ -93,5 +105,7 @@ const Card: React.FC<Props> = ({ linkUrl, title, posterPath, voteAverage, year }
     </Base>
   </StyledLink>
 )
+  
+}
 
 export default Card;

@@ -1,9 +1,20 @@
-import ReactSlick, { Settings } from 'react-slick';
+
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import React from 'react';
+import ReactSlider,{Settings} from "react-slick";
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 
-
+interface Props {
+  children?:
+    | React.ReactChild
+    | React.ReactChild[];//   
+  settings?: Settings;
+}
 const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
   padding: 16px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -23,10 +34,10 @@ const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
     width: 10px;
     height: 10px;
     color: #222;
-  } 
+  }
 `;
 
-// slick 의 옵션 객체 
+
 const DEFAULT_SETTINGS: Settings = {
   dots:false, // 하단 indicator
   arrows: true, // 좌우 화살표 표시 여부
@@ -34,10 +45,9 @@ const DEFAULT_SETTINGS: Settings = {
   speed: 500,
   slidesToShow: 5,  //슬라이드 당 표시될 수
   slidesToScroll: 5, // 스크롤 시 표시되는 수
-  swipe: true, 
+  swipe: true,
   draggable: true,
-  // 커스텀 화살표 적용 
-  prevArrow: (  
+  prevArrow: (
     <ArrowButton pos="left">
       <MdArrowBackIos />
     </ArrowButton>
@@ -46,23 +56,18 @@ const DEFAULT_SETTINGS: Settings = {
     <ArrowButton pos="right">
       <MdArrowForwardIos />
     </ArrowButton>
-  )
+  )  
 };
 
-interface Props {
-  settings?: Settings;
-  children?: JSX.Element,
-}
+const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS, children }) => (
+  <ReactSlider {...settings}>
+    {children}
+  </ReactSlider>
+)
 
-
-const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS , children}) => {
-  return(
-    <ReactSlick {...settings}>
-      {children}
-      <p>dsdsdsd</p>
-    </ReactSlick>
-  )
-}
 
 
 export default Slider;
+
+
+
