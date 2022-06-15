@@ -1,12 +1,17 @@
 
+//-- Styled
 import styled from '@emotion/styled';
+
+//-- Layout
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import UpcommingSection from '../features/movie/upcoming';
-import TopRateSection from '../features/movie/topRate';
-import PopularSection from '../features/movie/popular';
+
+//-- Features Component
 import LatestMovieSection from '../features/movie/latest';
 import NowPlayingSection from '../features/movie/nowPlaying';
+import PopularSection from '../features/movie/popular';
+import TopRateSection from '../features/movie/topRate';
+import UpcommingSection from '../features/movie/upcoming';
 
 
 const Main = styled.main`

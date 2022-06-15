@@ -1,5 +1,9 @@
+//-- Styled
 import styled from '@emotion/styled';
+
 import { Link } from 'react-router-dom';
+
+//-- Icons
 import { AiFillStar } from 'react-icons/ai';
 
 interface Props {

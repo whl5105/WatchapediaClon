@@ -1,12 +1,14 @@
-
-
+//-- Styled
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+//-- Styled slick-carousel CSS
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import React from 'react';
+//-- Slider
 import ReactSlider,{Settings} from "react-slick";
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+
+//-- Icons
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 
 interface Props{

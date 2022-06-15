@@ -1,4 +1,7 @@
+//-- Styled
 import styled from "@emotion/styled";
+
+//-- Icons
 import { AiOutlineSearch } from "react-icons/ai";
 
 const Base = styled.header`

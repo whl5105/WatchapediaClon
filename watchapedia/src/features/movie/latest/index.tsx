@@ -1,8 +1,11 @@
-import React from 'react';
+//-- Styled
 import styled from '@emotion/styled';
 
-import useLatestMovie from './useLatestMovie';
+//-- Components
 import Card from '../../../components/Card';
+
+//-- Data
+import useLatestMovie from './useLatestMovie';
 
 const Base = styled.div`
   margin-bottom: 42px;

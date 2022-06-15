@@ -1,6 +1,11 @@
+//-- Styled
 import styled from '@emotion/styled';
+
+//-- Component
 import Slider from '../../../components/Slider';
 import Card from '../../../components/Card';
+
+//-- Data 
 import useNowPlayingMovie from './useNowPlayingMovie';
 
 const Base = styled.div`
