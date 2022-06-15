@@ -16,13 +16,10 @@ const Title = styled.h4`
   padding: 12px 0 14px;
 `;
 
-const LatestMovieSection: React.FC = () => {
+const PopularSection: React.FC = () => {
   const { data: latestMovieResponse, isLoading } = useLatestMovie();
 
   const getYear = (release_date: string) => release_date.split('-')[0] || '';
-
-console.log(latestMovieResponse?.data)
-// console.log(latestMovieResponse?.data.poster_path)
 
   return (
     <Base>
@@ -47,4 +44,4 @@ console.log(latestMovieResponse?.data)
   )
 }
 
-export default LatestMovieSection;
+export default PopularSection;

@@ -78,8 +78,7 @@ const Average = styled.div`
 
 
 const Card: React.FC<Props> = ({ linkUrl, title, posterPath, voteAverage, year }) => {
-console.log(posterPath);
-console.log(linkUrl);
+  
 return(
   <StyledLink to={linkUrl}>
     <Base>
