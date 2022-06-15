@@ -1,6 +1,7 @@
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import UpcommingSection from '../features/movie/upcoming';
 import TopRateSection from '../features/movie/topRate';
 import PopularSection from '../features/movie/popular';
 import LatestMovieSection from '../features/movie/latest';
@@ -14,6 +15,7 @@ const MainPage: React.FC =()=>{
       <NowPlayingSection/>
       <PopularSection/>
       <TopRateSection/>
+      <UpcommingSection/>
       <Footer/>
     </>
   )
