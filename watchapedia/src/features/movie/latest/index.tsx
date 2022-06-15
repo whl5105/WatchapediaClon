@@ -5,10 +5,8 @@ import useLatestMovie from './useLatestMovie';
 import Card from '../../../components/Card';
 
 const Base = styled.div`
-  margin-top:62px;  
   margin-bottom: 42px;
 `;
-
 const Title = styled.h4`
   font-size: 22px;
   font-weight: 700;
