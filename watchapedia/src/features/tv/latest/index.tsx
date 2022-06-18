@@ -27,7 +27,7 @@ const LatestTvSection: React.FC = () => {
   console.log(latestTvResponse);
   return (
     <Base>
-      <Title>최근 개봉작</Title>
+      <Title>최근</Title>
       {
         isLoading ? (
           <div>Loading...</div>
