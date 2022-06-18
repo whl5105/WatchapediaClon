@@ -1,7 +1,13 @@
+import LatestTvSection from '../features/tv/latest';
+import AiringTodayTvSection from '../features/tv/airingToday';
 
 const TvPage: React.FC =()=>{
   return(
-    <div>TvPage</div>
+    <>
+    <LatestTvSection/>
+    <AiringTodayTvSection/>
+    </>
+
   )
 } 
 

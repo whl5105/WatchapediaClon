@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 //-- Features Component
+// movie
 import LatestMovieSection from '../features/movie/latest';
 import NowPlayingSection from '../features/movie/nowPlaying';
 import PopularSection from '../features/movie/popular';

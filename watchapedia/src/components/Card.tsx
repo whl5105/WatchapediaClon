@@ -82,13 +82,17 @@ const Average = styled.div`
 
 
 const Card: React.FC<Props> = ({ linkUrl, title, posterPath, voteAverage, year }) => {
-  
+
+  let nullUrl = posterPath.split(`${process.env.REACT_APP_IMAGE_PREFIX}`);
+
 return(
   <StyledLink to={linkUrl}>
     <Base>
       <ImageWrapper>
     {
-      posterPath === `${process.env.REACT_APP_IMAGE_PREFIX}null` ? (
+      nullUrl[1] === "null"  ? 
+        <PosterNull src="https://via.placeholder.com/1200x350" />  
+      : nullUrl[1] === "/null" ?(
         <PosterNull src="https://via.placeholder.com/1200x350" /> 
       ):(
         <Image src={posterPath} alt={`${title} 의 포스터 ${posterPath}`} />

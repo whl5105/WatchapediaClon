@@ -72,6 +72,7 @@ interface TV {
   original_language: string;
   vote_count: number;
   first_air_date: string;
+  last_air_date: string;
 }
 
 interface Person {
@@ -110,7 +111,8 @@ export interface TVDetail extends TV {
   seasons: Season[];
   status: string;
   type: string;
-  last_air_date: Date;
+  // last_air_date: Date;
+  last_air_date: string;
 }
 
 interface Image {

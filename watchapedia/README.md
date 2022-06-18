@@ -8,3 +8,4 @@
 - axios
 - react slick
 - react-query
+- custom hook
