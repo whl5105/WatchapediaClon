@@ -6,7 +6,7 @@ import Card from '../../../components/Card';
 import Slider from '../../../components/Slider';
 
 //-- Data
-import usePopularTv from './usePopularTv';
+import useToRateTv from './useToRateTV';
 
 
 const Base = styled.div`
@@ -20,21 +20,21 @@ const Title = styled.h4`
   padding: 12px 0 14px;
 `;
 
-const PopularTvSection: React.FC = () => {
-  const { data: popularTvResponse, isLoading } = usePopularTv();
+const ToRateTvSection: React.FC = () => {
+  const { data: toRateTvResponse, isLoading } = useToRateTv();
 
   const getYear = (release_date: string) => release_date.split('-')[0] || '';
 
   return (
     <Base>
-    <Title>인기 프로그램</Title>
+    <Title>인기 상영작</Title>
     {
       isLoading ? (
         <div>Loading...</div>
       ) : (
         <Slider>
           {
-            popularTvResponse?.data?.results.map(tv => (
+            toRateTvResponse?.data?.results.map(tv => (
               <Card
                 key={tv.id}
                 linkUrl={`/tv/${tv.id}`}
@@ -52,4 +52,4 @@ const PopularTvSection: React.FC = () => {
   )
 }
 
-export default PopularTvSection;
+export default ToRateTvSection;
