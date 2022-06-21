@@ -1,8 +1,11 @@
 //-- Styled
 import styled from "@emotion/styled";
+import React, { useState } from 'react';
 
 //-- Icons
 import { AiOutlineSearch } from "react-icons/ai";
+
+import useMovieSearch from "../features/movie/useMovieSearch";
 
 const Base = styled.header`
   position: fixed;
@@ -12,6 +15,8 @@ const Base = styled.header`
   text-align: center;
   width:100%;
   height:62px;
+  box-shadow: rgb(0 0 0 / 8%) 0px 1px 0px 0px;
+  transition: background-color 200ms ease 0s;
   z-index:10;
 `;
 
@@ -27,7 +32,7 @@ const MenuList = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 const Menu = styled.li`
@@ -77,6 +82,43 @@ const TextLogo = styled.h1`
 const SearchContainer = styled.div`
   position: relative;
   width: 100%;
+`;
+
+const SearchResultWrapper = styled.div`
+  position: absolute;
+  top: 60px;
+  left: 0;
+  /* z-index: 9999999; */
+  background-color: #fff;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  max-height: 480px;
+  /* overflow-y: scroll; */
+`;
+
+const SearchResultList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const SearchResultListItem = styled.li`
+  padding: 4px 6px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &:hover {
+    background-color: #eee;
+  }
 `;
 
 const SearchFormWrapper = styled.div``;
@@ -132,10 +174,16 @@ const SignUp = styled.button`
 `;
 
 const Header: React.FC = () => {
-  const handleKeyword = () => {
+  const [searchKeyword, setSearchKeyword] = React.useState<string>('');
 
+  const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearchKeyword(e.target.value);
+  
   }
 
+  const {data : searchResult} = useMovieSearch(searchKeyword); 
+  // console.log(useMovieSearch(searchKeyword));
+  console.log(searchResult?.data.results);
   return(
     <Base>
       <Navigation>
@@ -168,6 +216,20 @@ const Header: React.FC = () => {
                   </SearchForm>
                 </SearchFormWrapper>
               </SearchContainer>
+              {/* 검색 */}
+              <SearchResultWrapper>
+                <SearchResultList>
+                  {
+                    searchResult?.data.results.map((item) => (
+                      <Link key={item.id} href={`/movie/${item.id}`}>
+                        <SearchResultListItem>
+                          {item.title}
+                        </SearchResultListItem>
+                      </Link>
+                    ))
+                  }
+                </SearchResultList>
+              </SearchResultWrapper>
             </SearchMenu>
             <Menu>
               <SignIn>로그인</SignIn>

@@ -22,7 +22,6 @@ const PopularSection: React.FC = () => {
 
   const getYear = (release_date: string) => release_date.split('-')[0] || '';
 
-  console.log(latestMovieResponse);
   return (
     <Base>
       <Title>최근 개봉작</Title>

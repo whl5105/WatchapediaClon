@@ -24,7 +24,6 @@ const LatestTvSection: React.FC = () => {
 
   const getYear = (release_date: string) => release_date.split('-')[0] || '';
 
-  console.log(latestTvResponse);
   return (
     <Base>
       <Title>최근</Title>
