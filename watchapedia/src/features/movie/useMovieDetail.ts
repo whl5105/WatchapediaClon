@@ -1,17 +1,17 @@
 import { useQuery } from "react-query";
-import { AxiosResponse , AxiosError } from "axios";
+import { AxiosResponse, AxiosError } from "axios";
 
-import { ListResponse , Movie} from './../../types/index';
+import { MovieDetail } from "./../../types/index";
 
-import { searchApi } from "../../apis/movieApi";
+import { detailApi } from "../../apis/movieApi";
 
-const useMovieDetail = (query: string) => {
-  const queryFn = () => searchApi(query);
+const useMovieDetail = (id: string) => {
+  const queryFn = async() => await detailApi(id);
 
-  return useQuery<AxiosResponse<ListResponse<Movie>>, AxiosError>(
-    ["searchMovie", query],
+  return useQuery<AxiosResponse<MovieDetail>, AxiosError>(
+    ["movieDetail", id],
     queryFn,
-    { enabled: Boolean(query) }
+    { enabled: Boolean(id) }
   );
 };
 

@@ -89,17 +89,15 @@ return(
   <StyledLink to={linkUrl}>
     <Base>
       <ImageWrapper>
-    {
-      nullUrl[1] === "null"  ? 
-        <PosterNull src="https://via.placeholder.com/1200x350" />  
-      : nullUrl[1] === "/null" ?(
-        <PosterNull src="https://via.placeholder.com/1200x350" /> 
-      ):(
-        <Image src={posterPath} alt={`${title} 의 포스터 ${posterPath}`} />
-      )
-    }
-        
-        
+        {
+          nullUrl[1] === "null"  ? 
+            <PosterNull src="https://via.placeholder.com/1200x350" />  
+          : nullUrl[1] === "/null" ?(
+            <PosterNull src="https://via.placeholder.com/1200x350" /> 
+          ):(
+            <Image src={posterPath} alt={`${title} 의 포스터 ${posterPath}`} />
+          )
+        }
       </ImageWrapper>
       <Info>
         <Title>{title}</Title>

@@ -1,6 +1,16 @@
-import styled from "@emotion/styled";
+import {useMemo} from 'react';
 import {useParams} from "react-router-dom";
 
+//-- Style
+import styled from "@emotion/styled";
+
+//-- Icons
+import { AiOutlinePlus, AiFillEye } from 'react-icons/ai';
+import { FaPen } from 'react-icons/fa';
+import { FiMoreHorizontal } from 'react-icons/fi';
+
+
+//-- Component
 import useMovieDetail from '../features/movie/useMovieDetail';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -198,73 +208,97 @@ const ContentSectionContainer = styled.div`
 `;
 
 type Params = {
-  id: string;
+  id: string ;
 }
+
+
+
 
 const MovieDetail: React.FC =()=>{
   const { id } = useParams<Params>();
-  const {isLoading , data} = useMovieDetail(id); // useParams로 받아온 id 값을 useMovieDetail 로 넘겨주기 
+  console.log(id);
+  const {isLoading , data} =  useMovieDetail(id as string); // useParams로 받아온 id 값을 useMovieDetail 로 넘겨주기 
+  console.log(isLoading);
+  console.log(data);
+  const year = useMemo(() => data?.data.release_date.split('-')[0] || '', [data]);
+  // const year = useMemo(()=>{
+  //   return {
+  //     data: undefined ? null: data  
+  //   }
+  // },[data]);
+  // const genres = useMemo(() => data?data.genres?.map(genre => genre.name).join('/') || '', [data]);
+// console.log(typeof(id));
+// console.log(id);
+
 
 
 
   return(
     <Base>
-      <Header/>
-      <TopInfo>
-        <PosterContainer>
-          <Backdrop>
-            <LeftBlur/>
-            {/* <BackdropImage> */}
-              <LeftGradient/>
-              <RightGradient/>
-            {/* </BackdropImage> */}
-            <RightBlur/>
-          </Backdrop>
-        </PosterContainer>
+      <Header />
+        {isLoading || !data ? (
+          <div>Loading...</div>
+        ):(
+          <>
+            <TopInfo>
+              <PosterContainer>
+                <Backdrop>
+                  <LeftBlur/>
+                  <BackdropImage imageUrl={`${process.env.REACT_APP_IMAGE_PREFIX}/${data.data.backdrop_path}`}>
+                    <LeftGradient/>
+                    <RightGradient/>
+                  </BackdropImage>
+                  <RightBlur/>
+                </Backdrop>
+              </PosterContainer>
 
-        <Main>
-          <Container>
-            <PosterWrapper>
-              <Poster/>
-            </PosterWrapper>
-            <ContentWrapper>
-              <Title></Title>
-              <Keyword></Keyword>
-              <AverageRate></AverageRate>
-              <Actions>
-                <StarRate>
-                  <StarRateText></StarRateText>
-                  <RatingWrapper>
+              <Main>
+                <Container>
+                  <PosterWrapper>
+                    <Poster src={`${process.env.REACT_APP_IMAGE_PREFIX}/${data.data.poster_path}`} />
+                  </PosterWrapper>
+                  <ContentWrapper>
+                    <Title></Title>
+                    {/* <Keyword>{year} ・ {genres}</Keyword> */}
+                    <Keyword>{year} ・ </Keyword>
+                    <AverageRate>평균 * {data.data.vote_average} ({data.data.vote_count}명)</AverageRate>
+                    <Actions>
+                      <StarRate>
+                        <StarRateText>평가하기</StarRateText>
+                        <RatingWrapper>
 
-                  </RatingWrapper>
-                </StarRate>
-                <Divider />
+                        </RatingWrapper>
+                      </StarRate>
+                      <Divider />
 
-                <ActionButtonContainer>
-                  <ActionButton>
-                    보고싶어요
-                  </ActionButton>
-                  <ActionButton>
-                    보는중
-                  </ActionButton>
-                  <ActionButton>
-                    더보기
-                  </ActionButton>
-                </ActionButtonContainer>
-              </Actions>
-            </ContentWrapper>
-          </Container>
-        </Main>
-      </TopInfo>
-
-      <BottomInfo>
-        <ContentSectionContainer>
-          {/* <DefaultInfo />
-          <Similar /> */}
-        </ContentSectionContainer>
-      </BottomInfo>
-
-      <Footer/>
+                      <ActionButtonContainer>
+                        <ActionButton>
+                          <AiOutlinePlus/> 보고싶어요
+                        </ActionButton>
+                        <ActionButton>
+                          <FaPen /> 코멘트
+                        </ActionButton>
+                        <ActionButton>
+                          <AiFillEye /> 보는중
+                        </ActionButton>
+                        <ActionButton>
+                          <FiMoreHorizontal /> 더보기
+                        </ActionButton>
+                      </ActionButtonContainer>
+                    </Actions>
+                  </ContentWrapper>
+                </Container>
+              </Main>
+            </TopInfo>
+            <BottomInfo>
+              <ContentSectionContainer>
+                {/* <DefaultInfo />
+                <Similar /> */}
+              </ContentSectionContainer>
+            </BottomInfo>
+          </>
+        )}
+      <Footer />
     </Base>
   )
 } 

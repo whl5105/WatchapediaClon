@@ -182,8 +182,8 @@ const Header: React.FC = () => {
   }
 
   const {data : searchResult} = useMovieSearch(searchKeyword); 
-  // console.log(useMovieSearch(searchKeyword));
-  console.log(searchResult?.data.results);
+
+
   return(
     <Base>
       <Navigation>
